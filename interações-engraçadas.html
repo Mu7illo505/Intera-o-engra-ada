@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina do Juízo Final Humano</title>
+
+</head>
+<body>
+    <div class="background-chaos"></div>
+    <div class="container">
+        <h1>Máquina do Juízo Final Humano</h1>
+        <p>Escolha sua falha humana e veja seu destino ridículo!</p>
+        <div class="input-group">
+            <select id="falha">
+                <option value="">Selecione sua falha</option>
+                <option value="preguica">Preguiça Crônica</option>
+                <option value="arrogancia">Arrogância de Influencer</option>
+                <option value="gula">Gula Descontrolada</option>
+                <option value="teimosia">Teimosia de Mula</option>
+                <option value="drama">Drama de Novela</option>
+            </select>
+        </div>
+        <button onclick="julgarHumanidade()">Ativar o Juízo!</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function julgarHumanidade() {
+            const falha = document.getElementById('falha').value;
+            const resultadoDiv = document.getElementById('resultado');
+
+            if (!falha) {
+                resultadoDiv.innerHTML = "Sem falha? Impossível, você é humano ou um robô disfarçado? 🤖";
+                criarEfeitoCaos('🤔');
+                return;
+            }
+
+            const destinos = {
+                preguica: [
+                    "Por sua preguiça, você será condenado a rolar ladeira abaixo dentro de um barril de cerveja quente! 🍺💦",
+                    "Preguiça detectada! Seu destino: virar tapete humano pra gatos preguiçosos pisarem! 😺"
+                ],
+                arrogancia: [
+                    "Arrogância nível influencer! Você vai cair do pedestal imaginário e aterrizar num chiqueiro! 🐷",
+                    "Tão arrogante que o universo te bane pra um reality show com clones seus piorados! 🎥"
+                ],
+                gula: [
+                    "Gula absurda! Você será forçado a comer pizza de brócolis por 10 anos enquanto chora! 🍕😭",
+                    "Seu destino guloso: engasgar com um bolo gigante e virar meme eterno! 🎂"
+                ],
+                teimosia: [
+                    "Teimosia de mula! Você vai discutir com um GPS quebrado até cair num vulcão ativo! 🌋",
+                    "Por ser teimoso, vai insistir que o Sol é uma lâmpada até fritar na praia! ☀️"
+                ],
+                drama: [
+                    "Drama detectado! Você vira estrela de uma novela onde todos te ignoram pra sempre! 📺",
+                    "Exagerado demais! Seu destino: chorar num palco vazio enquanto palhaços riem de você! 🤡"
+                ]
+            };
+
+            const destino = destinos[falha][Math.floor(Math.random() * destinos[falha].length)];
+            resultadoDiv.innerHTML = destino;
+
+            // Efeitos visuais e sonoros
+            criarEfeitoCaos('💥');
+            criarEfeitoCaos('😂');
+            criarEfeitoCaos('🔥');
+            tocarSomCaotico();
+            animarFundo();
+        }
+
+        function criarEfeitoCaos(emoji) {
+            const efeito = document.createElement('div');
+            efeito.className = 'chaos-effect';
+            efeito.innerHTML = emoji;
+            efeito.style.left = Math.random() * 90 + 'vw';
+            efeito.style.top = Math.random() * 90 + 'vh';
+            document.body.appendChild(efeito);
+
+            setTimeout(() => efeito.remove(), 1500);
+        }
+
+        function tocarSomCaotico() {
+            const sons = [
+                "https://www.myinstants.com/media/sounds/explosion.mp3",
+                "https://www.myinstants.com/media/sounds/laugh.mp3"
+            ];
+            const audio = new Audio(sons[Math.floor(Math.random() * sons.length)]);
+            audio.play();
+        }
+
+        function animarFundo() {
+            const chaosDiv = document.querySelector('.background-chaos');
+            chaosDiv.innerHTML = '';
+            for (let i = 0; i < 10; i++) {
+                const span = document.createElement('span');
+                span.style.position = 'absolute';
+                span.style.fontSize = `${Math.random() * 5 + 2}em`;
+                span.style.left = Math.random() * 100 + 'vw';
+                span.style.top = Math.random() * 100 + 'vh';
+                span.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                span.innerHTML = '💣';
+                span.style.animation = `explode ${Math.random() * 2 + 1}s ease forwards`;
+                chaosDiv.appendChild(span);
+                setTimeout(() => span.remove(), 2000);
+            }
+        }
+
+        // Easter egg: clique múltiplo no título
+        let clickCount = 0;
+        document.querySelector('h1').addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                document.getElementById('resultado').innerHTML = 
+                    "VOCÊ ACORDOU A MÁQUINA! Agora todos viram picadinho cósmico, parabéns, gênio! 🌌";
+                criarEfeitoCaos('☄️');
+                clickCount = 0;
+            }
+        });
+    </script>
+</body>
+</html>
